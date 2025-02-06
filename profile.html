@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - PICT OLX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .profile-container {
+            text-align: left;
+        }
+        .profile-photo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .card-body p {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">PICT OLX</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="profile.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h4>User Profile</h4>
+                    </div>
+                    <div class="card-body profile-container">
+                        <img src="image.webp" alt="Profile Photo" class="rounded-circle mb-3 profile-photo">
+                        <div class="mb-3">
+                            <label class="form-label">Name:</label>
+                            <p class="form-control">John Doe</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email:</label>
+                            <p class="form-control">johndoe@example.com</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone:</label>
+                            <p class="form-control">+1 234 567 890</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address:</label>
+                            <p class="form-control">123 Main Street, Cityville, Country</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date of Birth:</label>
+                            <p class="form-control">January 1, 1990</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="edit-profile.html" class="btn btn-primary">Edit Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

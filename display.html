@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .card {
+            max-width: 800px;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center pt-5">
+    <div class="card p-4 shadow-lg">
+        <h2 class="text-center mb-4">Registration Details</h2>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody id="dataDisplay">
+                <tr>
+                    <td>Full Name</td>
+                    <td id="displayName"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td id="displayEmail"></td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td id="displayMobile"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td id="displayAddress"></td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td id="displayCity"></td>
+                </tr>
+                <tr>
+                    <td>Hobbies</td>
+                    <td id="displayHobbies"></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td id="displayGender"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <a href="register.html" class="btn btn-primary mt-3">Back to Registration</a>
+            <a href="index.html" class="btn btn-secondary mt-3">Go to Homepage</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const queryParams = new URLSearchParams(window.location.search);
+
+            document.getElementById('displayName').textContent = queryParams.get('name') || 'N/A';
+            document.getElementById('displayEmail').textContent = queryParams.get('email') || 'N/A';
+            document.getElementById('displayMobile').textContent = queryParams.get('mobile') || 'N/A';
+            document.getElementById('displayAddress').textContent = queryParams.get('address') || 'N/A';
+            document.getElementById('displayCity').textContent = queryParams.get('city') || 'N/A';
+            document.getElementById('displayHobbies').textContent = queryParams.getAll('hobbies').join(', ') || 'N/A';
+            document.getElementById('displayGender').textContent = queryParams.get('gender') || 'N/A';
+        });
+    </script>
+</body>
+</html>

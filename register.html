@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        .required::after {
+            content: " *";
+            color: red;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            display: none;
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center pt-5">
+    <div class="card p-4 shadow-lg" style="width: 500px; max-width: 100%;">
+        <h2 class="text-center">Register</h2>
+        <form action="display.html" id="registrationForm">
+            <div class="mb-3">
+                <label for="name" class="form-label fw-bold required">Full Name</label>
+                <input type="text" class="form-control" id="name" pattern="[A-Za-z ]+" required>
+                <div id="nameError" class="error-message">Name must not contain numbers.</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label fw-bold required">Email</label>
+                <input type="email" class="form-control" id="email" pattern="^[^@]+@[^@]+\.com$" required>
+                <div id="emailError" class="error-message">Email must have @ and end with .com</div>
+            </div>
+            <div class="mb-3">
+                <label for="mobile" class="form-label fw-bold required">Mobile Number</label>
+                <input type="tel" class="form-control" id="mobile" pattern="\d{10}" maxlength="10" required>
+                <div id="mobileError" class="error-message">Mobile number must be exactly 10 digits.</div>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label fw-bold required">Address</label>
+                <textarea class="form-control" id="address" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label fw-bold required">City</label>
+                <select class="form-select" id="city" required>
+                    <option value="Mumbai" selected>Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold required">Hobbies</label><br>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="reading" value="Reading">
+                    <label class="form-check-label" for="reading">Reading</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="traveling" value="Traveling">
+                    <label class="form-check-label" for="traveling">Traveling</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gaming" value="Gaming">
+                    <label class="form-check-label" for="gaming">Gaming</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold required">Gender</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+                    <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                    <label class="form-check-label" for="female">Female</label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('name').addEventListener('input', function() {
+            const nameField = this;
+            const errorMessage = document.getElementById('nameError');
+
+            if (/\d/.test(nameField.value)) {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
+
+        document.getElementById('email').addEventListener('input', function() {
+            const emailField = this;
+            const errorMessage = document.getElementById('emailError');
+
+            if (!/^[^@]+@[^@]+\.com$/.test(emailField.value)) {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
+
+        document.getElementById('mobile').addEventListener('input', function() {
+            const mobileField = this;
+            const errorMessage = document.getElementById('mobileError');
+
+            if (!/^\d{10}$/.test(mobileField.value) && mobileField.value.length === 10) {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+
+            if (mobileField.value.length > 10) {
+                mobileField.value = mobileField.value.slice(0, 10);
+            }
+        });
+    
+        document.getElementById('registrationForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission behavior
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                mobile: document.getElementById('mobile').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                hobbies: Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(hobby => hobby.value),
+                gender: document.querySelector('input[name="gender"]:checked').value
+            };
+
+            // Convert form data to query parameters
+            const queryParams = new URLSearchParams(formData).toString();
+            window.location.href = `display.html?${queryParams}`;
+    });
+    </script>
+</body>
+</html>

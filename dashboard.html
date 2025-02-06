@@ -1,0 +1,55 @@
+<!-- IMPLEMENTATION OF index.html USING NO BOOTSTRAP-->
+<!-- ONLY HTML AND CSS USED-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PICT OLX Dashboard</title>
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <button class="navbar-toggler">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Customers</a></li>
+                <li><a href="#">Analytics</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <h2>Dashboard</h2>
+            <div class="cards">
+                <div class="card primary">
+                    <h5>Total Sales</h5>
+                    <p>$10,000</p>
+                </div>
+                <div class="card success">
+                    <h5>Orders</h5>
+                    <p>150</p>
+                </div>
+                <div class="card warning">
+                    <h5>Customers</h5>
+                    <p>120</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+/* Apply background.jpeg as the background for the entire website */
+body {
+    background: url('background.jpeg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Additional styles for profile page */
+.card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.form-control {
+    background-color: #f8f9fa;
+    border: none;
+    box-shadow: none;
+}
+
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 56px; /* Adjust to match navbar height */
+}
+
+main {
+    margin-left: 16.67%; /* Adjust based on sidebar width */
+    background: url('background.jpeg') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.card {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+}
