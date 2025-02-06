@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
             content: " *";
             color: red;
         }
+
         .error-message {
             color: red;
             font-size: 0.9rem;
@@ -19,14 +21,16 @@
         }
     </style>
 </head>
+
 <body class="d-flex justify-content-center pt-5">
     <div class="card p-4 shadow-lg" style="width: 500px; max-width: 100%;">
         <h2 class="text-center">Register</h2>
         <form action="display.html" id="registrationForm">
             <div class="mb-3">
                 <label for="name" class="form-label fw-bold required">Full Name</label>
-                <input type="text" class="form-control" id="name" pattern="[A-Za-z ]+" required>
-                <div id="nameError" class="error-message">Name must not contain numbers.</div>
+                <input type="text" class="form-control" id="name" pattern="^[A-Za-z ]+$" required>
+                <div id="nameError" class="error-message">Name must only contain alphabets and spaces.</div>
+
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label fw-bold required">Email</label>
@@ -35,7 +39,7 @@
             </div>
             <div class="mb-3">
                 <label for="mobile" class="form-label fw-bold required">Mobile Number</label>
-                <input type="tel" class="form-control" id="mobile" pattern="\d{10}" maxlength="10" required>
+                <input type="tel" class="form-control" id="mobile" pattern="^\d{10}$" maxlength="10" required>
                 <div id="mobileError" class="error-message">Mobile number must be exactly 10 digits.</div>
             </div>
             <div class="mb-3">
@@ -86,18 +90,20 @@
     </div>
 
     <script>
-        document.getElementById('name').addEventListener('input', function() {
+        document.getElementById('name').addEventListener('input', function () {
             const nameField = this;
             const errorMessage = document.getElementById('nameError');
 
-            if (/\d/.test(nameField.value)) {
+            // Check if the input contains any characters other than letters and spaces
+            if (/[^A-Za-z ]/.test(nameField.value)) {
                 errorMessage.style.display = 'block';
             } else {
                 errorMessage.style.display = 'none';
             }
         });
 
-        document.getElementById('email').addEventListener('input', function() {
+
+        document.getElementById('email').addEventListener('input', function () {
             const emailField = this;
             const errorMessage = document.getElementById('emailError');
 
@@ -108,7 +114,7 @@
             }
         });
 
-        document.getElementById('mobile').addEventListener('input', function() {
+        document.getElementById('mobile').addEventListener('input', function () {
             const mobileField = this;
             const errorMessage = document.getElementById('mobileError');
 
@@ -122,9 +128,9 @@
                 mobileField.value = mobileField.value.slice(0, 10);
             }
         });
-    
+
         document.getElementById('registrationForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent the default form submission behavior
+            e.preventDefault(); // Prevent default form submission
 
             const formData = {
                 name: document.getElementById('name').value,
@@ -136,10 +142,31 @@
                 gender: document.querySelector('input[name="gender"]:checked').value
             };
 
-            // Convert form data to query parameters
-            const queryParams = new URLSearchParams(formData).toString();
-            window.location.href = `display.html?${queryParams}`;
-    });
+            // Simulating an AJAX POST request
+            fetch('display.html', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('POST request failed');
+                    }
+                })
+                .then(() => {
+                    // Store the data in localStorage after successful "POST"
+                    localStorage.setItem('formData', JSON.stringify(formData));
+                    // Redirect after the "POST" operation
+                    window.location.href = 'display.html';
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
     </script>
 </body>
+
 </html>

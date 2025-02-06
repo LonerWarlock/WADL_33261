@@ -66,17 +66,25 @@
             <a href="index.html" class="btn btn-secondary mt-3">Go to Homepage</a>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const queryParams = new URLSearchParams(window.location.search);
+            // Retrieve data from localStorage
+            const formData = JSON.parse(localStorage.getItem('formData'));
 
-            document.getElementById('displayName').textContent = queryParams.get('name') || 'N/A';
-            document.getElementById('displayEmail').textContent = queryParams.get('email') || 'N/A';
-            document.getElementById('displayMobile').textContent = queryParams.get('mobile') || 'N/A';
-            document.getElementById('displayAddress').textContent = queryParams.get('address') || 'N/A';
-            document.getElementById('displayCity').textContent = queryParams.get('city') || 'N/A';
-            document.getElementById('displayHobbies').textContent = queryParams.getAll('hobbies').join(', ') || 'N/A';
-            document.getElementById('displayGender').textContent = queryParams.get('gender') || 'N/A';
+            if (formData) {
+                // Display the data in the table
+                document.getElementById('displayName').textContent = formData.name || 'N/A';
+                document.getElementById('displayEmail').textContent = formData.email || 'N/A';
+                document.getElementById('displayMobile').textContent = formData.mobile || 'N/A';
+                document.getElementById('displayAddress').textContent = formData.address || 'N/A';
+                document.getElementById('displayCity').textContent = formData.city || 'N/A';
+                document.getElementById('displayHobbies').textContent = formData.hobbies.length > 0 ? formData.hobbies.join(', ') : 'N/A';
+                document.getElementById('displayGender').textContent = formData.gender || 'N/A';
+            } else {
+                // If no data is found, display 'No Data'
+                document.getElementById('dataDisplay').innerHTML = "<tr><td colspan='2'>No data found!</td></tr>";
+            }
         });
     </script>
 </body>
