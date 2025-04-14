@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About</title>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+  <div data-role="page" id="about" style="background-color: aliceblue;">
+    <div data-role="header" data-theme="b">
+      <h1>About Us</h1>
+    </div>
+
+    <div data-role="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="ui-btn-active">About</a></li>
+        <li><a href="login_register.html">Register</a></li>
+      </ul>
+    </div>
+
+    <div role="main" class="ui-content" style="text-align: justify; line-height: 1.6; margin: 10px;">
+        <p>
+            This mobile-friendly website was built using jQuery Mobile, a lightweight framework designed to help developers create responsive and touch-optimized web applications with minimal effort. The project demonstrates how a simple mobile site can be developed using only HTML, CSS, and JavaScript, without relying on modern frontend frameworks like React or Angular.
+        </p>
+        
+        <p>
+            The development process began with setting up a basic multi-page layout using jQuery Mobile's structure. Each page of the app—Home, About, and Register—is defined within separate div blocks using specific data-role attributes. These roles allow jQuery Mobile to render headers, footers, navigation bars, and content areas with a consistent look and feel across all devices. Navigation is smooth and behaves similarly to native apps thanks to jQuery Mobile's AJAX-based page transitions.
+        </p>
+        
+        <p>
+            On the Home page, a gallery of 50 random images is generated using JavaScript and displayed using the HTML img tag. The images are fetched from a free image service and are lazy-loaded to improve performance and reduce bandwidth usage. Each image ID is selected randomly to ensure variety each time the page is visited.
+        </p>
+        
+        <p>
+            The About page, where you are reading this, provides a detailed overview of the app and its development. It highlights the simplicity and power of jQuery Mobile for building mobile interfaces quickly and effectively.
+        </p>
+        
+        <p>
+            The Register page includes a mobile-optimized form with input fields for name, email, checkboxes for subscriptions, and a slider to select gender. Custom styling using CSS was applied to center the form on the screen and restrict its width, giving it a more modern and focused appearance.
+        </p>
+        
+        <p>
+            Overall, this jQuery Mobile application serves as a demonstration of how to build clean, user-friendly mobile web interfaces using classic web technologies. It's a great example of how even older frameworks like jQuery Mobile can still be useful for rapid prototyping and educational projects.
+        </p>          
+    </div>
+
+    <div data-role="footer">
+      <h4>© 2025 My Mobile Site</h4>
+    </div>
+  </div>
+</body>
+</html>
