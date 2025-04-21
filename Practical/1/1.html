@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalog</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      background: #f0f2f5;
+    }
+  
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+      margin-top: 20px;
+    }
+  
+    th {
+      background-color: #007bff;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      border-radius: 6px 6px 0 0;
+    }
+  
+    td {
+      background-color: #fff;
+      padding: 12px;
+      vertical-align: middle;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+  
+    tr:hover td {
+      background-color: #f1f9ff;
+      transition: background-color 0.3s ease;
+    }
+  
+    img {
+      max-width: 100px;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+}
+
+  
+    #paginationControls {
+      text-align: center;
+      margin-top: 30px;
+    }
+  
+    button {
+      padding: 10px 16px;
+      margin: 0 5px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+  
+    button:hover {
+      background-color: #0056b3;
+    }
+  
+    #pageInfo {
+      font-size: 18px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+  </style>
+  
+</head>
+
+<body>
+
+  <h1>Product Catalog</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <div id="paginationControls">
+    <button onclick="changePage(-1)">⬅ Prev</button>
+    <span id="pageInfo"></span>
+    <button onclick="changePage(1)">Next ➡</button>
+  </div>
+
+  <script>
+    const products = [
+      { img: "https://img.freepik.com/free-photo/blue-headphones-isolated-white-background_23-2147827665.jpg?t=st=1745166822~exp=1745170422~hmac=9ad1ae99736774ed1a3e9bf67c69d5252228a2a46f8d5a64afb1513b198452e9&w=1380", name: "Headphones", price: "₹7,999", description: "Noise-cancelling." },
+      { img: "https://img.freepik.com/free-psd/smartwatch-realistic-isolated-transparent-background_84443-1817.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Smartwatch", price: "₹12,999", description: "Fitness tracker." },
+      { img: "https://img.freepik.com/free-photo/purple-computer-mouse_1260-11.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Mouse", price: "₹2,499", description: "Ergonomic." },
+      { img: "https://img.freepik.com/premium-photo/standing-laptop-holder-set-up-with-notebook-desk_928017-310.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Stand", price: "₹1,999", description: "Adjustable." },
+      { img: "https://img.freepik.com/free-photo/keyboard-button_1203-9150.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Keyboard", price: "₹3,499", description: "Mechanical." },
+      { img: "https://img.freepik.com/free-psd/webcam-isolated-transparent-background_191095-32636.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Webcam", price: "₹4,999", description: "HD 1080p." },
+      { img: "https://img.freepik.com/free-psd/hard-drive-isolated-transparent-background_191095-23978.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "SSD", price: "₹5,999", description: "500GB." },
+      { img: "https://img.freepik.com/free-photo/composition-smart-speaker-table_23-2149036845.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Speaker", price: "₹2,299", description: "Compact." },
+      { img: "https://img.freepik.com/free-photo/view-computer-monitor-display_23-2150757335.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Monitor", price: "₹14,999", description: "24-inch IPS." },
+      { img: "https://img.freepik.com/premium-photo/black-hub-4-ports-usb-isolated-white-background_139820-890.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "USB Hub", price: "₹999", description: "4-port." },
+      { img: "https://img.freepik.com/premium-photo/modern-wireless-mouse-pad-white-background_392895-130758.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Mouse Pad", price: "₹399", description: "Smooth glide." }, 
+      { img: "https://img.freepik.com/free-photo/blue-headphones-isolated-white-background_23-2147827665.jpg?t=st=1745166822~exp=1745170422~hmac=9ad1ae99736774ed1a3e9bf67c69d5252228a2a46f8d5a64afb1513b198452e9&w=1380", name: "Headphones", price: "₹7,999", description: "Noise-cancelling." },
+      { img: "https://img.freepik.com/free-psd/smartwatch-realistic-isolated-transparent-background_84443-1817.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Smartwatch", price: "₹12,999", description: "Fitness tracker." },
+      { img: "https://img.freepik.com/free-photo/purple-computer-mouse_1260-11.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Mouse", price: "₹2,499", description: "Ergonomic." },
+      { img: "https://img.freepik.com/premium-photo/standing-laptop-holder-set-up-with-notebook-desk_928017-310.jpg?ga=GA1.1.962932508.1745166829&semt=ais_hybrid&w=740", name: "Stand", price: "₹1,999", description: "Adjustable." }
+    ];
+
+    let page = 1, rows = 10;
+
+    function showPage() {
+      const tbody = document.getElementById("tableBody");
+      tbody.innerHTML = products.slice((page - 1) * rows, page * rows)
+        .map(p => `<tr>
+          <td><img src="${p.img}" alt=""></td>
+          <td>${p.name}</td>
+          <td>${p.price}</td>
+          <td>${p.description}</td>
+        </tr>`).join("");
+      document.getElementById("pageInfo").textContent = `Page ${page} of ${Math.ceil(products.length / rows)}`;
+    }
+
+    function changePage(step) {
+      const total = Math.ceil(products.length / rows);
+      if (page + step >= 1 && page + step <= total) {
+        page += step;
+        showPage();
+      }
+    }
+
+    window.onload = showPage;
+  </script>
+
+</body>
+
+</html>

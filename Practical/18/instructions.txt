@@ -1,0 +1,79 @@
+1. RUN NODE SERVER.JS IN terminal
+
+2. mongodb compass: mongodb://127.0.0.1:27017
+
+3. POSTMAN
+
+a)	Music DB exists -->	Show MongoDB Compass / use music in terminal
+b)	Song collection exists	--> Show collection songs in MongoDB
+c)	Insert 5 songs --> 	Use Postman: POST /songs with array of 5 song JSONs
+d)	List + Count	--> Visit http://localhost:3000/songs in browser
+e)	Filter by Music Director -->	Use Postman/Browser: GET /songs/music-director/A.R.Rahman
+f)	Filter by MD + Singer -->	Use: GET /songs/music-director/A.R.Rahman/singer/Arijit Singh
+g)	Delete unwanted song	--> Use: DELETE /songs/:id via Postman
+h)	Add favorite song	--> Use: POST /songs/new with JSON body
+i)	List by Singer & Film -->	Use: GET /songs/film/Dil Se/singer/Arijit Singh
+j)	Update actor/actress	--> Use: PUT /songs/:id with JSON: { "actor": "...", "actress": "..." }
+
+
+
+POSTMAN insert data:
+
+POSTMAN -> URL: http://localhost:3000/songs -> POST -> GO TO Body, raw, JSON
+insert this and hit send :
+
+[
+  {
+    "songName": "Tum Hi Ho",
+    "film": "Aashiqui 2",
+    "musicDirector": "Mithoon",
+    "singer": "Arijit Singh"
+  },
+  {
+    "songName": "Chaiyya Chaiyya",
+    "film": "Dil Se",
+    "musicDirector": "A.R.Rahman",
+    "singer": "Sukhwinder Singh"
+  },
+  {
+    "songName": "Kal Ho Naa Ho",
+    "film": "Kal Ho Naa Ho",
+    "musicDirector": "Shankar-Ehsaan-Loy",
+    "singer": "Sonu Nigam"
+  },
+  {
+    "songName": "Tera Ban Jaunga",
+    "film": "Kabir Singh",
+    "musicDirector": "Akhil Sachdeva",
+    "singer": "Akhil Sachdeva"
+  },
+  {
+    "songName": "Agar Tum Saath Ho",
+    "film": "Tamasha",
+    "musicDirector": "A.R.Rahman",
+    "singer": "Alka Yagnik"
+  }
+]
+
+
+
+TO DELETE:
+
+DELETE http://localhost:3000/songs/<SONG_ID>
+
+
+TO PUT:
+
+PUT http://localhost:3000/songs/<SONG_ID>
+
+and IN bODY, RAW, JSON 
+
+{
+  "actor": "Shah Rukh Khan",
+  "actress": "Manisha Koirala"
+}
+
+
+Check song Id:
+
+GET http://localhost:3000/songs

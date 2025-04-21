@@ -1,0 +1,25 @@
+To run -> node server.js
+
+mongodb compass: mongodb://127.0.0.1:27017
+
+RUN FOLLOWING IN POSTMAN:
+
+To Create book-entry -> POST http://localhost:3000/books
+
+{
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "price": 250,
+    "genre": "Fiction"
+}
+
+To Retieve book-entries -> GET http://localhost:3000/books
+OR SIMPLY VISIT THE URL
+
+To Update book-entries -> PUT http://localhost:3000/books/<BOOK_ID>
+
+{
+    "price": 299
+}
+
+To Delete book-entry -> DELETE http://localhost:3000/books/<BOOK_ID>

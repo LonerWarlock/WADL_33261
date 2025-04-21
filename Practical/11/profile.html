@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Your Profile</h2>
+    <div id="profileData"></div>
+  </div>
+  <script>
+    const userId = localStorage.getItem("loggedInUser");
+    if (!userId) {
+      alert("Please login first");
+      window.location.href = "login.html";
+    } else {
+      fetch(`http://localhost:3000/users/${userId}`)
+        .then(res => res.json())
+        .then(user => {
+          document.getElementById("profileData").innerHTML = `
+            <p><strong>Name:</strong> ${user.name}</p>
+            <p><strong>Email:</strong> ${user.email}</p>
+            <p><strong>Mobile:</strong> ${user.mobile}</p>
+            <p><strong>DOB:</strong> ${user.dob}</p>
+            <p><strong>City:</strong> ${user.city}</p>
+            <p><strong>Address:</strong> ${user.address}</p>
+            <p><strong>Username:</strong> ${user.username}</p>
+          `;
+        });
+    }
+  </script>
+</body>
+</html>

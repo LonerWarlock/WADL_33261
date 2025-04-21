@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fffefb;
+    color: #333;
+  }
+  header {
+    background-color: #222;
+    color: white;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+  }
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(to right, #f7d9aa, #f7a8b8);
+  }
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 30px;
+  }
+  .gallery img {
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .hero p {
+    max-width: 600px;
+    margin: auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  

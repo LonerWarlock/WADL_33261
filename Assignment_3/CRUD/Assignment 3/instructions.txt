@@ -1,0 +1,17 @@
+run node app.js
+
+make sure atlas has IP ACCESS
+ATLAS: https://cloud.mongodb.com/v2/66576c9fd86a744de5ce639c#/clusters
+
+then open 
+http://localhost:3000/api/users
+
+FOR POST:
+
+{
+  "name": "Bob",
+  "email": "bob@example.com",
+  "mobile": "4335563210",
+  "password": "password123"
+}
+

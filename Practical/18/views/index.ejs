@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Songs</title>
+</head>
+<body>
+    <h1>Total Songs: <%= count %></h1>
+    <table border="1">
+        <tr>
+            <th>Song Name</th>
+            <th>Film</th>
+            <th>Music Director</th>
+            <th>Singer</th>
+            <th>Actor</th>
+            <th>Actress</th>
+        </tr>
+        <% songs.forEach(song => { %>
+            <tr>
+                <td><%= song.songName %></td>
+                <td><%= song.film %></td>
+                <td><%= song.musicDirector %></td>
+                <td><%= song.singer %></td>
+                <td><%= song.actor || '-' %></td>
+                <td><%= song.actress || '-' %></td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+</html>
